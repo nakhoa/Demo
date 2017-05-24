@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 COPY run.sh /etc/puppetlabs/
 
 RUN	awk '$1 ~ "^deb" { $3 = $3 "-backports"; print; exit }' /etc/apt/sources.list > /etc/apt/sources.list.d/backports.list && \
-	apt-get update && apt-get install -y --no-install-recommends openssh-server wget && \
+	apt-get update && apt-get install -y --no-install-recommends openssh-server wget uuid-runtime && \
 	apt-get install -y -t jessie-backports openjdk-8-jdk && \
 	wget -O puppetlabs.deb https://apt.puppetlabs.com/puppetlabs-release-pc1-jessie.deb && \
 	dpkg -i puppetlabs.deb && \
